@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>微信公众平台开发最佳实践</title>
+		<style >
+			#mcover {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.7);
+				display: none;
+				z-index: 20000;
+			}
+		</style>
+		<script type="text/javascript">
+            var shareData = {
+				"img_url": "http://bcs.duapp.com/api100/image/logo/newyear.jpg",
+				"img_width": "160",
+				"img_height": "160",
+				"link": "http://wpcfree.duapp.com/weixin/share.html",
+				"desc":  "Best wishes for a wonderful new year.",
+				"title": "新年贺卡"
+			};
+			document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+				// 发送给好友
+				WeixinJSBridge.on('menu:share:appmessage', function(argv){
+					shareFriend();
+				});
+				// 分享到朋友圈
+				WeixinJSBridge.on('menu:share:timeline', function(argv){
+					shareTimeline();
+				});
+				// 分享到微博
+				WeixinJSBridge.on('menu:share:weibo', function(argv){
+					shareWeibo();
+				});
+              
+            }, false);
+			//分享给好友
+			function shareFriend() {
+				WeixinJSBridge.invoke('sendAppMessage', shareData, function(res) {
+					validateShare(res);
+					_report('send_msg', res.err_msg);
+				});
+			}
+			// 分享到朋友圈
+			function shareTimeline() {
+				WeixinJSBridge.invoke('shareTimeline', shareData, function(res) {
+					validateShare(res);
+					_report('timeline', res.err_msg);
+				});
+			}
+			//分享到微博
+			function shareWeibo() {
+				WeixinJSBridge.invoke('shareWeibo',{
+					"content": '内容描述',
+					"url": 'url',
+				}, function(res) {
+					alert(res.err_msg);
+					_report('weibo', res.err_msg);
+				});
+			}
+			function validateShare(res) {//分享完毕回调
+				if(res.err_msg == 'send_app_msg:ok') {
+					document.getElementById("pp").innerHTML="谢谢分享";
+					document.getElementById('mcover').style.display='block';
+				}
+				if(res.err_msg == 'share_timeline:ok') {
+					setTimeout(function(){
+						document.getElementById("pp").innerHTML="谢谢分享";
+						document.getElementById('mcover').style.display='block';
+					},3000);
+				}
+			}
+			function WeiXinShareBtn() { 
+				if (typeof WeixinJSBridge == "undefined") { 
+					alert("请先通过微信访问"); 
+				} else { 
+					shareTimeline(); 
+				} 
+			}
+        </script>
+    </head>
+    <body style="">
+		<p>测试测试测试</p>
+		<p id="pp"></p>
+		<div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display:none;">
+			答案
+		</div>
+    </body>
+</html>

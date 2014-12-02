@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>微信公众平台开发最佳实践</title>
+		
+    </head>
+    <body style="">
+		<script type="text/javascript">
+            var shareData = {
+				"img_url": "http://bcs.duapp.com/api100/image/logo/newyear.jpg",
+				"img_width": "160",
+				"img_height": "160",
+				"link": "http://api100.duapp.com/card/",
+				"desc":  "Best wishes for a wonderful new year.",
+				"title": "新年贺卡"
+			};
+			//关注
+			function addWxContact(name){
+				WeixinJSBridge.invoke('addContact', {
+					webtype: '1',
+					username: name
+				}, function(d) {
+					// 返回d.err_msg取值，d还有一个属性是err_desc
+					// add_contact:cancel 用户取消
+					// add_contact:fail　关注失败
+					// add_contact:ok 关注成功
+					// add_contact:added 已经关注
+					alert(d.err_msg);
+					WeixinJSBridge.log(d.err_msg);
+					if(d.err_msg == 'add_contact:added' || d.err_msg == 'add_contact:ok'){
+						//关注成功，或者已经关注过
+						
+					}
+				});
+			};
+			document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+                // 发送给好友
+                WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                    WeixinJSBridge.invoke('sendAppMessage', {
+                        "appid": "123",
+                        "img_url": "http://bcs.duapp.com/api100/image/logo/lover.jpg",
+                        "img_width": "160",
+                        "img_height": "160",
+                        "link": "http://api100.duapp.com/card/",
+                        "desc":  "山无陵，天地合，乃敢与君绝。",
+                        "title": "爱情贺卡"
+                    }, function (res) {
+                        _report('send_msg', res.err_msg);
+                    })
+                });
+				// 发送给好友
+				WeixinJSBridge.on('menu:share:appmessage', function(argv){
+					shareFriend();
+				});
+				// 分享到朋友圈
+				WeixinJSBridge.on('menu:share:timeline', function(argv){
+					shareTimeline();
+				});
+				// 分享到微博
+				WeixinJSBridge.on('menu:share:weibo', function(argv){
+					shareWeibo();
+				});
+              
+            }, false);
+			// 分享到朋友圈
+			function shareTimeline() {
+				WeixinJSBridge.invoke('shareTimeline', shareData, function(res) {
+					validateShare(res);
+					//_report('timeline', res.err_msg);
+				});
+			}
+			//分享给好友
+			function shareFriend() {
+				WeixinJSBridge.invoke('sendAppMessage', shareData, function(res) {
+					validateShare(res);
+					//_report('send_msg', res.err_msg);
+				});
+			}
+			//分享到微博
+			function shareWeibo() {
+				WeixinJSBridge.invoke('shareWeibo',{
+					"content": '内容描述',
+					"url": 'url',
+				}, function(res) {
+					alert(res.err_msg);
+					//_report('weibo', res.err_msg);
+				});
+			}
+			function validateShare(res) {//分享完毕回调
+				if(res.err_msg == 'send_app_msg:ok') {
+					document.getElementById("pp").innerHTML="谢谢分享";
+				}
+				if(res.err_msg == 'share_timeline:ok') {
+					setTimeout(function(){
+						document.getElementById("pp").innerHTML="谢谢分享";
+					},3000);
+				}
+			}
+			function WeiXinShareBtn() { 
+				if (typeof WeixinJSBridge == "undefined") { 
+					alert("请先通过微信访问"); 
+				} else { 
+					shareTimeline(); 
+				} 
+			}
+        </script>
+		
+        <a href="#" onclick="WeiXinShareBtn()">分享到朋友圈</a>
+		<p>测试测试测试</p>
+		<p id="pp"></p>
+    </body>
+</html>

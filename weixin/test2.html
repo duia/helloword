@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>微信公众平台开发最佳实践</title>
+    </head>
+    <body style="">
+        <script type="text/javascript">
+            function onBridgeReady(){
+			 WeixinJSBridge.call('hideOptionMenu');
+			}
+
+			if (typeof WeixinJSBridge == "undefined"){
+				if( document.addEventListener ){
+					document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+				}else if (document.attachEvent){
+					document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+					document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+				}
+			}else{
+				onBridgeReady();
+			}
+        </script>
+    </body>
+</html>

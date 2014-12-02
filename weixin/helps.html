@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta http-equiv="content-Type" content="text/html;charset=utf-8"/>
+	<title>wpcfree平台</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<style>
+	
+	</style>
+	<script>
+	$(document).on("pageinit",function(event){
+		$("#re").on("tap",function(){
+			location.reload();
+		});
+	});
+	</script>
+</head>
+<body>
+<div data-role="page">	
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>wpcfree帮助您</h1>
+		<a href="#" data-role="button" class="ui-btn-right" data-icon="refresh" id="re">刷新</a>
+	</div>
+	
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider"><h1>微信公众平台功能目录</h1></li>
+			<li><a href="#gj" data-transition="slide">
+				<h3>公交查询</h3>
+				<p style="white-space: normal;">公交信息查询功能，查询用户所在地市公交及其换乘信息。</p>
+			</a></li>
+			<li><a href="#fj" data-transition="slide">
+				<h2>附近检索</h2>
+				<p style="white-space: normal;">附近检索功能，查询用户周边各种信息服务。</p>
+			</a></li>
+			<li><a href="#hc" data-transition="slide">
+				<h2>火车票查询</h2>
+				<p style="white-space: normal;">火车票查询功能，可查询全国各地火车信息及火车票剩余信息。</p>
+			</a></li>
+			<li><a href="#kd" data-transition="slide">
+				<h2>快递查询</h2>
+				<p style="white-space: normal;">快递查询功能。</p>
+			</a></li>
+			<li><a href="#jq" data-transition="slide">
+				<h2>智能小机器人</h2>
+				<p style="white-space: normal;">智能小机器人，具备了与用户智能聊天的功能。</p>
+			</a></li>
+			<li><a href="#add" data-transition="slide">
+				<h2>上传位置</h2>
+				<p style="white-space: normal;">微信上传地址方法。</p>
+			</a></li>
+		</ul>
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="b">
+		<h1>帮助</h1>
+	</div>
+</div>
+<div data-role="page" id="gj">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-role="button" data-rel="back">返回</a>
+		<h1>公交信息查询功能介绍</h1>
+	</div>
+	<div data-role="content">
+		<h4>公交信息查询功能介绍</h4>
+		<h6>简述：为您提供您所在地市公交换乘路线、公交车和公交站点的相关信息。</h6>
+		<p style="text-indent:2em;">欢迎使用公交信息查询功能，此功能需要先上传您的地理位置信息（查看上传位置信息功能）后，点击“ <strong>查功能</strong> ”按钮中的“ <strong>查公交</strong> ”，会返回操作提示，根据提示，回复相应功能代码，进行操作。</p>
+		<p style="text-indent:2em;">如：回复“ <strong>GJ出发地到目的地</strong> ”，会返回从出发地到目的地的公交及换乘方案，其中出发地可省略，将会用您的定位点作为出发地；回复“ <strong>GJ</strong> ”，会返回您附近500米范围内的公交站点及相关信息；回复“ <strong>GJ+公交车数字</strong> ”，会返回该路公交线路及相关信息；</p>
+		<p style="text-indent:2em;">说明：以上输入部分的字母均可小写。查询结果仅供参考。</p>
+	</div>
+</div>
+<div data-role="page" id="fj">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-role="button" data-rel="back">返回</a>
+		<h1>附近检索功能介绍</h1>
+	</div>
+	<div data-role="content">
+		<h4>附近检索功能介绍</h4>
+		<h6>简述：为您提供周边3000米以内的各种信息，如旅馆、酒店、饭店、KTV、小区、汽车维修等等各种生活信息。</h6>
+		<p style="text-indent:2em;">欢迎使用周边检索服务，此功能需要先上传您的地理位置信息（查看上传位置信息功能）后，点击“ <strong>查功能</strong> ”按钮中的“ <strong>查附近</strong> ”，会返回您附近的相关服务类型代码，根据提示，输入相应类型代码进行操作。如：“C5：宾馆”，回复“ <strong>C5</strong> ”或“ <strong>c5</strong> ”便可返回“宾馆”的下级分类或该分类下附近的宾馆类信息。</p>
+		<p style="text-indent:2em;">最终返回的服务信息中地址可以点击，点击具体地址，可跳转至地图页面，查看其所在位置。</p>
+	</div>
+</div>
+<div data-role="page" id="hc">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-role="button" data-rel="back">返回</a>
+		<h1>火车票查询功能介绍</h1>
+	</div>
+	<div data-role="content">
+		<h4>火车票查询功能介绍</h4>
+		<h6>简述：为您提供全国范围内火车班次以及火车票剩余情况的信息查询。</h6>
+		<p style="text-indent:2em;">欢迎使用火车票查询功能，点击“ <strong>查功能</strong> ”按钮中的“ <strong>查火车</strong> ”，会返回操作提示，根据提示，回复相应的功能代码，进行相关信息的查询。</p>
+		<p style="text-indent:2em;">回复“ <strong>HC+出发地-目的地</strong> ”，返回从出发地到目的地的列车、时刻、距离，如“ HC太原-北京 ”，回复“ <strong>HC+出发地-目的地+自然数+类别（可选）</strong> ”，返回出发地到目的地的火车、时刻、历时、剩余票数，如“HC太原-北京2G”。</p>
+		<p style="text-indent:2em;">特别说明：关于“<strong>自然数</strong>”：0代表今天，1代表明天，2代表第后天...，以此类推；类别包括G(高铁)、D(动车)、T(特快)、Z(直达)、K(快速)、Q(其他)，类别不输入，默认返回全部，如你输入无误仍没有返回信息，请添加类别。以上字母均可小写。查询结果仅供参考，如有不同，请以实际情况为准。</p>
+	</div>
+</div>
+<div data-role="page" id="kd">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-role="button" data-rel="back">返回</a>
+		<h1>快递查询功能介绍</h1>
+	</div>
+	<div data-role="content">
+		<h4>快递查询功能介绍</h4>
+		<h6>简述：为您提供日常生活中最常用的几家快递查询服务。</h6>
+		<p style="text-indent:2em;">欢迎使用快递查询功能，点击“ <strong>查功能</strong> ”按钮中的“ <strong>查快递</strong> ”，会返回相关的操作提示，根据提示输入相关信息，进行快递查询。</p>
+		<p style="text-indent:2em;">回复“ <strong>KD+快递名+运单号</strong> ”进行快递查询，如“ KD顺丰1234567890 ”，目前支持以下快递：顺丰、中通、圆通、申通、汇通、韵达、天天、如风达、宅急送、邮政（ems）。如还无法满足您的需求，请给我留言，我会及时补充，谢谢！</p>
+		<p style="text-indent:2em;">说明：以上输入部分字母可以小写。</p>
+	</div>
+</div>
+<div data-role="page" id="jq">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-role="button" data-rel="back">返回</a>
+		<h1>智能小机器人介绍</h1>
+	</div>
+	<div data-role="content">
+		<h4>智能小机器人介绍</h4>
+		<p style="text-indent:2em;">调皮的小机器人，在你无聊的时候可以随时陪伴在你身边，可以帮你查一些你不知道的各种资料，如名人、名歌名曲、名胜古迹、天文地理...会给你讲笑话，偶尔会表现出一定的小邪恶，学你说话、顶嘴。</p>
+	</div>
+</div>
+<div data-role="page" id="add">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-role="button" data-rel="back">返回</a>
+		<h1>地理位置上传</h1>
+	</div>
+	<div data-role="content">
+		<h4>微信如何上传地址</h4>
+		<p style="text-indent:2em;">切换到输入框下，点击右边的“+”，选择“位置”，会弹出发送位置的提示，点击后会跳转至定位地图页面，默认是手机定位点，可以自行拖动地图并选择你要上传的位置即可。</p>
+		<p style="text-indent:2em;">说明：由于周边检索和公交查询功能需要获取你的地理位置及您所在地市，所以这两功能需先进行位置上传。</p>
+	</div>
+</div>
+</body>
+</html>

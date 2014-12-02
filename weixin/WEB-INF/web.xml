@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  	<display-name>weixin</display-name>
+  
+  	<servlet>
+		<servlet-name>weixin</servlet-name>
+		<servlet-class>com.wpc.weixin.servlet.WeiXinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>weixin</servlet-name>
+		<url-pattern>*.wx</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>diaocha</servlet-name>
+		<servlet-class>com.wpc.weixin.servlet.DiaoChaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>diaocha</servlet-name>
+		<url-pattern>*.dc</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    <servlet-name>info</servlet-name>
+	    <servlet-class>com.wpc.weixin.servlet.InfoOut</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>info</servlet-name>
+	    <url-pattern>/info</url-pattern>
+	</servlet-mapping>
+  
+</web-app>

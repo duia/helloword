@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>中秋送祝福</title>
+		<script type="text/javascript" src="getUrlParam.js"></script>
+		<style >
+			#mcover {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.7);
+				display: none;
+				z-index: 20000;
+			}
+		</style>
+		<script type="text/javascript">
+            var name=UrlParm.parm("name");
+			
+			var shareData = {
+				"img_url": "http://d.pcs.baidu.com/thumbnail/1a4d4d94b0d107a0d46d4708848b47e1?fid=774160431-250528-232602262592295&time=1409900400&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-X1BaLKgMm5%2BTPosuUd3bCCfhZg8%3D&expires=2h&prisign=unkown&chkv=0&chkbd=0&chkpc=&size=c850_u580&quality=100",
+				"img_width": "160",
+				"img_height": "160",
+				"link": "http://wpcfree.duapp.com/weixin/zhongqiu.html?name=输名字",
+				"desc":  "Best wishes for a wonderful Zhongqiu.",
+				"title": "中秋贺卡"
+			};
+			document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+				
+				// 发送给好友
+				WeixinJSBridge.on('menu:share:appmessage', function(argv){
+					shareFriend();
+				});
+				// 分享到朋友圈
+				WeixinJSBridge.on('menu:share:timeline', function(argv){
+					shareTimeline();
+				});
+				// 分享到微博
+				WeixinJSBridge.on('menu:share:weibo', function(argv){
+					shareWeibo();
+				});
+              
+            }, false);
+			//分享给好友
+			function shareFriend() {
+				shareData.link = "http://wpcfree.duapp.com/weixin/zhongqiu.html?name="+document.getElementById("you").value;
+				WeixinJSBridge.invoke('sendAppMessage', shareData, function(res) {
+					validateShare(res);
+					_report('send_msg', res.err_msg);
+				});
+			}
+			// 分享到朋友圈
+			function shareTimeline() {
+				shareData.link = "http://wpcfree.duapp.com/weixin/zhongqiu.html?name="+document.getElementById("you").value;
+				WeixinJSBridge.invoke('shareTimeline', shareData, function(res) {
+					validateShare(res);
+					_report('timeline', res.err_msg);
+				});
+			}
+			//分享到微博
+			function shareWeibo() {
+				WeixinJSBridge.invoke('shareWeibo',{
+					"content": '内容描述',
+					"url": 'url',
+				}, function(res) {
+					alert(res.err_msg);
+					_report('weibo', res.err_msg);
+				});
+			}
+			function validateShare(res) {//分享完毕回调
+				if(res.err_msg == 'send_app_msg:ok') {
+					document.getElementById("pp").innerHTML="谢谢分享";
+					document.getElementById('mcover').style.display='block';
+				}
+				if(res.err_msg == 'share_timeline:ok') {
+					setTimeout(function(){
+						document.getElementById("pp").innerHTML="谢谢分享";
+						document.getElementById('mcover').style.display='block';
+					},3000);
+				}
+			}
+			function WeiXinShareBtn() { 
+				if (typeof WeixinJSBridge == "undefined") { 
+					alert("请先通过微信访问"); 
+				} else { 
+					shareTimeline(); 
+				} 
+			}
+			function inName(){
+				document.getElementById("you").value = name;
+			}
+        </script>
+    </head>
+    <body background="zqhk.jpg" style="background-repeat:no-repeat;" onload="inName()">
+		
+		<div style="position: absolute;top:172px;left: 55px;z-index: 20000;font-size:0.5em;font-weight:bold;font-style:italic;">
+			<!--<font id="name" style="font-size:0.8em;font-weight:bold;font-style:italic;" color="yellow"></font>	
+			<img src="zqhk.jpg" width="348px" />style="background-image:zqhk.jpg;background-position:center; background-repeat:repeat-y;" onload="document.getElementById('name').innerHTML=name;"-->
+			<input style="width:50px;" type="text" id="you" value="" placeholder="输入你的名字"/>
+		<div/>
+	</body>
+</html>
